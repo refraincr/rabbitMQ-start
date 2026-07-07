@@ -1,4 +1,4 @@
-package com.rabbit-mq.app;
+package com.rabbitmq.app;
 
 /**
  * Hello world!
