@@ -8,3 +8,9 @@ mvn archetype:generate \
   -DarchetypeArtifactId=maven-archetype-quickstart \
   -DinteractiveMode=false
 ```
+
+# maven编译运行
+```bash
+mvn compile
+mvn exec:java -Dexec.mainClass="com.rabbitmq.app.RabbitComsumer"
+```
