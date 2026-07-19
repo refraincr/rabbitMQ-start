@@ -26,24 +26,35 @@ public class RabbitComsumer {
         channel.queueDeclare(QUEUE_NAME, true, false, false, null);
         // 设置客户端最多接受未被ack的个数
         channel.basicQos(64);
-        Consumer consumer = new DefaultConsumer(channel) {
-            @Override
-            public void handleDelivery(String consumerTag,
-                Envelope envelope,AMQP.BasicProperties properties,
-                byte[] body
-            ) throws IOException {
-                System.out.println("recv message: "+new String(body));
-                try {
-                    TimeUnit.SECONDS.sleep(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                channel.basicAck(envelope.getDeliveryTag(), false);
-            }
-        };
-        channel.basicConsume(QUEUE_NAME, consumer);
-        // 回调函数执行完毕后执行资源
+
+
+        // 推模式
+        // Consumer consumer = new DefaultConsumer(channel) {
+        //     @Override
+        //     public void handleDelivery(String consumerTag,
+        //         Envelope envelope,AMQP.BasicProperties properties,
+        //         byte[] body
+        //     ) throws IOException {
+        //         System.out.println("recv message: "+new String(body));
+        //         try {
+        //             TimeUnit.SECONDS.sleep(1);
+        //         } catch (InterruptedException e) {
+        //             e.printStackTrace();
+        //         }
+        //         channel.basicAck(envelope.getDeliveryTag(), false);
+        //     }
+        // };
+        // channel.basicConsume(QUEUE_NAME, consumer);
+
+        // 拉模式
         TimeUnit.SECONDS.sleep(5);
+        GetResponse response = channel.basicGet(QUEUE_NAME, false);
+
+        System.out.println(new String(response.getBody()));
+        channel.basicAck(response.getEnvelope().getDeliveryTag(), false);
+
+        // 回调函数执行完毕后执行资源
+        // TimeUnit.SECONDS.sleep(5);
         channel.close();
         connection.close();
     }

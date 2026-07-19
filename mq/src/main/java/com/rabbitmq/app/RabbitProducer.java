@@ -3,10 +3,10 @@ package com.rabbitmq.app;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
+import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.MessageProperties;
 
 public class RabbitProducer {
     private static final String EXCHANGE_NAME = "exchange_demo";
@@ -37,7 +37,11 @@ public class RabbitProducer {
         channel.basicPublish(
             EXCHANGE_NAME,
             ROUTING_KEY,
-            MessageProperties.PERSISTENT_TEXT_PLAIN,
+            new AMQP.BasicProperties.Builder()
+                .contentType("text/plain")
+                .deliveryMode(2)  // 持久化
+                .priority(1)
+                .build(),
             message.getBytes()
         );
         // 关闭资源

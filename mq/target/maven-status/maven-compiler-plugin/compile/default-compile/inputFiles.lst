@@ -1,3 +1,7 @@
+/home/zxc/project/java/rabbitMQ/mq/src/main/java/com/rabbitmq/app/ExToEx.java
 /home/zxc/project/java/rabbitMQ/mq/src/main/java/com/rabbitmq/app/RabbitComsumer.java
+/home/zxc/project/java/rabbitMQ/mq/src/main/java/com/rabbitmq/chapterfour/MandatoryTestConsumer.java
+/home/zxc/project/java/rabbitMQ/mq/src/main/java/com/rabbitmq/chapterfour/MandatoryTestProducter.java
 /home/zxc/project/java/rabbitMQ/mq/src/main/java/com/rabbitmq/app/RabbitProducer.java
 /home/zxc/project/java/rabbitMQ/mq/src/main/java/com/rabbitmq/app/App.java
+/home/zxc/project/java/rabbitMQ/mq/src/main/java/com/rabbitmq/app/ExToExComsumer.java
